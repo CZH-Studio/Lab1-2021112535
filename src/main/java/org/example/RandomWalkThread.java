@@ -19,26 +19,25 @@ public class RandomWalkThread implements Runnable{
     }
     @Override
     public void run() {
+        Set<Edge> edgeSet = new HashSet<>();
         StringBuilder randomWalkSentence = new StringBuilder();
-        Map<String, Integer> copiedMap = new HashMap<>(word2id);
-        for (Map.Entry<String, Integer> entry : copiedMap.entrySet()) {
-            entry.setValue(0);
-        }
-        int startId;
         int pointer;
-        pointer = startId = random.nextInt(word2id.size());
-        randomWalkSentence.append(id2word[startId]);
-        copiedMap.remove(id2word[startId]);
+        pointer = random.nextInt(word2id.size());
+        randomWalkSentence.append(id2word[pointer]);
         while(!Thread.interrupted()){
             LinkedList<Edge> head = graph.get(pointer);
             if (head.isEmpty())
                 break;
             else {
                 int r = random.nextInt(head.size());
+                Edge edge = new Edge(pointer, head.get(r).destination);
                 pointer = head.get(r).destination;
-                if (pointer!=startId && copiedMap.containsKey(id2word[pointer])){
+                if (!edgeSet.contains(edge)){
                     randomWalkSentence.append(" ").append(id2word[pointer]);
-                    copiedMap.remove(id2word[pointer]);
+                    edgeSet.add(edge);
+                }
+                else {
+                    break;
                 }
             }
             try {
