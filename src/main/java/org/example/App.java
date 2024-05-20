@@ -26,6 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class App extends Application {
     private static final Logger logger = LogManager.getLogger(App.class);
+    /* B2 */
     // 绘图参数
     private static final int GRAPH_BORDER = 30;          // 边界
     private static final int GRAPH_RADIUS = 350;        // 分布的大圆的半径
