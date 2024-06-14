@@ -481,8 +481,13 @@ public class App extends Application {
     return result.toString();
   }
 
-  /* 查询桥接词 */
-  private String queryBridgeWords(String word1, String word2) {
+  /**
+   * 查询桥接词.
+   * @param word1 单词1.
+   * @param word2 单词2.
+   * @return 桥接词结果
+   */
+  public String queryBridgeWords(String word1, String word2) {
     /* 查询桥接词 */
     // 获取两个单词的id
     int id1 = 0;
